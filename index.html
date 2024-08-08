@@ -52,7 +52,7 @@
             /* End of reset */
 
             body {
-                background-color: mintcream;
+                background-color: lightpink;
             }
             .container {
                 display: flex;
@@ -60,6 +60,7 @@
                 justify-content: space-between;
                 flex-direction: column;
                 height: 100vh;
+                width: 100vw;
             }
             .heading {
                 font-size: 120px;
@@ -69,18 +70,56 @@
             .message {
                 margin-top: auto;
                 margin-bottom: auto;
-                color: #167d16;
-                font-size: 48px;
+                color: maroon;
+                font-size: 80px;
+                font-weight: bold;
             }
         </style>
         <script type="application/javascript">
-            addEventListener("load", (event) => document.querySelector(".message").innerHTML = "No.");
+            function detectDownness() {
+                const messageSpan = document.querySelector("#downdetector");
+                const background = document.querySelector("body");
+
+                messageSpan.innerHTML = "No.";
+                messageSpan.style.color = "#167d16";
+                messageSpan.style["font-weight"] = "normal";
+                messageSpan.style["font-size"] = "48px";
+                background.style.backgroundColor = "mintcream";
+            }
+            addEventListener("load", (event) => detectDownness());
         </script>
     </head>
     <body>
         <div class="container">
             <h1 class="heading">Is This Website Down?</h1>
-            <span class="message centered">Yes.</span>
+            <noscript class="container">
+                <style>
+                    body {
+                        background-color: mintcream;
+                    }
+                    .message {
+                        font-size: 48px;
+                        font-weight: normal;
+                        color: #167d16;
+                    }
+                    .super {
+                        font-size: 24px;
+                        vertical-align: super;
+                    }
+                    .footer {
+                        margin-top: auto;
+                        margin-left: auto;
+                        font-size: 18px;
+                        justify-content: flex-end;
+                    }
+                    .scripty {
+                        display: none;
+                    }
+                </style>
+                <span class="message">No.<span class="message super">*</span></span>
+                <span class="footer">* Javascript is disabled, but you're still here, so...</span>
+            </noscript>
+            <span id="downdetector" class="scripty message">Yes.</span>
         </div>
     </body>
 </html>
